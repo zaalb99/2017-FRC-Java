@@ -28,9 +28,6 @@ public class Robot extends IterativeRobot {
   public  static  JagDrive      jagDrive;
   public  static  boolean       actuatorInit;
   
-  private static  String  autonSelection;
-  public  static  int     autonStep;
-  
   public  static  AHRS           gyro;
   public  static  PIDController  turnController;
   public  static  PIDController  moveController;
@@ -64,7 +61,7 @@ public class Robot extends IterativeRobot {
     
     lift.changeControlMode(CANTalon.TalonControlMode.PercentVbus);
     
-    actuator.changeControlMode(CANTalon.TalonControlMode.PercentVbus);
+    actuator.changeControlMode(CANTalon.TalonControlMode.Position);
     actuator.setFeedbackDevice(CANTalon.FeedbackDevice.CtreMagEncoder_Relative);
     
     joystick = new JaguarJoystick(JagConstants.joystick);
@@ -127,7 +124,7 @@ public class Robot extends IterativeRobot {
   @Override
   public void autonomousInit() {
     zeroSensors();
-    autonStep = 0;
+    
     
     jagDrive.prepareForAuton();
     
@@ -137,7 +134,7 @@ public class Robot extends IterativeRobot {
     Right   rightAuton;
     Default defaultAuton;
   
-    autonSelection = "Default";
+    String autonSelection = "Default";
     switch (autonSelection) {
       case "Left":
         leftAuton = new Left();
