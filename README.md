@@ -1,1 +1,3 @@
-Team 4192's 2017 FIRST Steamworks Java code
+# 2017 Java Code
+
+Code for Team 4192's Steamworks bot.
